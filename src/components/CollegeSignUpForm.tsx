@@ -4,41 +4,47 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { User, Mail, Lock, Check, X } from "lucide-react";
+import { User, Mail, Lock, Building, MapPin, X, Globe } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 
-const StudentSignUpForm: React.FC = () => {
+const CollegeSignUpForm: React.FC = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
+    collegeName: '',
     email: '',
     password: '',
     confirmPassword: '',
+    location: '',
+    country: '',
   });
   
   const [errors, setErrors] = useState({
-    name: '',
+    collegeName: '',
     email: '',
     password: '',
     confirmPassword: '',
+    location: '',
+    country: '',
   });
 
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
-      name: '',
+      collegeName: '',
       email: '',
       password: '',
       confirmPassword: '',
+      location: '',
+      country: '',
     };
 
-    // Validate name
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+    // Validate college name
+    if (!formData.collegeName.trim()) {
+      newErrors.collegeName = 'College name is required';
       isValid = false;
     }
 
@@ -70,6 +76,18 @@ const StudentSignUpForm: React.FC = () => {
       isValid = false;
     }
 
+    // Validate location
+    if (!formData.location.trim()) {
+      newErrors.location = 'Location is required';
+      isValid = false;
+    }
+
+    // Validate country
+    if (!formData.country.trim()) {
+      newErrors.country = 'Country is required';
+      isValid = false;
+    }
+
     setErrors(newErrors);
     return isValid;
   };
@@ -97,14 +115,16 @@ const StudentSignUpForm: React.FC = () => {
       try {
         setIsLoading(true);
         
-        // Sign up the user with Supabase
+        // Sign up the college with Supabase
         const { data, error } = await supabase.auth.signUp({
           email: formData.email,
           password: formData.password,
           options: {
             data: {
-              full_name: formData.name,
-              user_type: 'student'
+              college_name: formData.collegeName,
+              user_type: 'college',
+              location: formData.location,
+              country: formData.country
             }
           }
         });
@@ -113,17 +133,19 @@ const StudentSignUpForm: React.FC = () => {
 
         // Success
         toast({
-          title: "Account created!",
+          title: "College account created!",
           description: "Please check your email to verify your account.",
           duration: 5000,
         });
 
         // Reset form
         setFormData({
-          name: '',
+          collegeName: '',
           email: '',
           password: '',
           confirmPassword: '',
+          location: '',
+          country: '',
         });
 
         // Navigate to login
@@ -144,38 +166,86 @@ const StudentSignUpForm: React.FC = () => {
   return (
     <Card className="auth-card animate-enter shadow-lg">
       <CardHeader className="space-y-1 text-center">
-        <CardTitle className="text-2xl font-bold text-purple-600">Student Sign Up</CardTitle>
+        <CardTitle className="text-2xl font-bold text-purple-600">College Registration</CardTitle>
         <CardDescription>
-          Create an account to access career guidance resources
+          Register your institution to connect with prospective students
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name" className="form-label">Full Name</Label>
+            <Label htmlFor="collegeName" className="form-label">College Name</Label>
             <div className="relative">
               <div className="absolute left-3 top-2.5 text-gray-400">
-                <User size={18} />
+                <Building size={18} />
               </div>
               <Input
-                id="name"
-                name="name"
-                placeholder="Enter your full name"
+                id="collegeName"
+                name="collegeName"
+                placeholder="Enter college name"
                 className="form-input pl-10"
-                value={formData.name}
+                value={formData.collegeName}
                 onChange={handleChange}
                 disabled={isLoading}
               />
             </div>
-            {errors.name && (
+            {errors.collegeName && (
               <div className="text-sm text-red-500 flex items-center mt-1">
-                <X size={16} className="mr-1" /> {errors.name}
+                <X size={16} className="mr-1" /> {errors.collegeName}
               </div>
             )}
           </div>
           
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="location" className="form-label">City/Location</Label>
+              <div className="relative">
+                <div className="absolute left-3 top-2.5 text-gray-400">
+                  <MapPin size={18} />
+                </div>
+                <Input
+                  id="location"
+                  name="location"
+                  placeholder="City/Location"
+                  className="form-input pl-10"
+                  value={formData.location}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+              </div>
+              {errors.location && (
+                <div className="text-sm text-red-500 flex items-center mt-1">
+                  <X size={16} className="mr-1" /> {errors.location}
+                </div>
+              )}
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="country" className="form-label">Country</Label>
+              <div className="relative">
+                <div className="absolute left-3 top-2.5 text-gray-400">
+                  <Globe size={18} />
+                </div>
+                <Input
+                  id="country"
+                  name="country"
+                  placeholder="Country"
+                  className="form-input pl-10"
+                  value={formData.country}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                />
+              </div>
+              {errors.country && (
+                <div className="text-sm text-red-500 flex items-center mt-1">
+                  <X size={16} className="mr-1" /> {errors.country}
+                </div>
+              )}
+            </div>
+          </div>
+          
           <div className="space-y-2">
-            <Label htmlFor="email" className="form-label">Email</Label>
+            <Label htmlFor="email" className="form-label">Official Email</Label>
             <div className="relative">
               <div className="absolute left-3 top-2.5 text-gray-400">
                 <Mail size={18} />
@@ -184,7 +254,7 @@ const StudentSignUpForm: React.FC = () => {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Enter institutional email"
                 className="form-input pl-10"
                 value={formData.email}
                 onChange={handleChange}
@@ -251,7 +321,7 @@ const StudentSignUpForm: React.FC = () => {
             className="btn-primary mt-6 w-full"
             disabled={isLoading}
           >
-            {isLoading ? "Creating Account..." : "Create Account"}
+            {isLoading ? "Creating Account..." : "Register Institution"}
           </Button>
         </form>
       </CardContent>
@@ -267,4 +337,4 @@ const StudentSignUpForm: React.FC = () => {
   );
 };
 
-export default StudentSignUpForm;
+export default CollegeSignUpForm;

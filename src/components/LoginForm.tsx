@@ -4,43 +4,33 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { User, Mail, Lock, Check, X } from "lucide-react";
+import { Mail, Lock, X } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
 
-const StudentSignUpForm: React.FC = () => {
+const LoginForm: React.FC = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
     password: '',
-    confirmPassword: '',
   });
   
   const [errors, setErrors] = useState({
-    name: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    form: '',
   });
 
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
-      name: '',
       email: '',
       password: '',
-      confirmPassword: '',
+      form: '',
     };
-
-    // Validate name
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
-      isValid = false;
-    }
 
     // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -55,18 +45,6 @@ const StudentSignUpForm: React.FC = () => {
     // Validate password
     if (!formData.password) {
       newErrors.password = 'Password is required';
-      isValid = false;
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
-      isValid = false;
-    }
-
-    // Validate confirm password
-    if (!formData.confirmPassword) {
-      newErrors.confirmPassword = 'Please confirm your password';
-      isValid = false;
-    } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = 'Passwords do not match';
       isValid = false;
     }
 
@@ -97,41 +75,31 @@ const StudentSignUpForm: React.FC = () => {
       try {
         setIsLoading(true);
         
-        // Sign up the user with Supabase
-        const { data, error } = await supabase.auth.signUp({
+        // Sign in the user with Supabase
+        const { data, error } = await supabase.auth.signInWithPassword({
           email: formData.email,
           password: formData.password,
-          options: {
-            data: {
-              full_name: formData.name,
-              user_type: 'student'
-            }
-          }
         });
 
         if (error) throw error;
 
-        // Success
         toast({
-          title: "Account created!",
-          description: "Please check your email to verify your account.",
-          duration: 5000,
+          title: "Login successful!",
+          description: "Welcome back!",
+          duration: 3000,
         });
 
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-        });
-
-        // Navigate to login
-        navigate('/login');
+        // Redirect to dashboard
+        navigate('/dashboard');
       } catch (error: any) {
+        setErrors(prev => ({
+          ...prev,
+          form: error.message || "Invalid email or password"
+        }));
+        
         toast({
-          title: "Error creating account",
-          description: error.message || "There was a problem creating your account.",
+          title: "Login failed",
+          description: error.message || "Invalid email or password",
           variant: "destructive",
           duration: 5000,
         });
@@ -144,35 +112,18 @@ const StudentSignUpForm: React.FC = () => {
   return (
     <Card className="auth-card animate-enter shadow-lg">
       <CardHeader className="space-y-1 text-center">
-        <CardTitle className="text-2xl font-bold text-purple-600">Student Sign Up</CardTitle>
+        <CardTitle className="text-2xl font-bold text-purple-600">Sign In</CardTitle>
         <CardDescription>
-          Create an account to access career guidance resources
+          Enter your credentials to access your account
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
-            <Label htmlFor="name" className="form-label">Full Name</Label>
-            <div className="relative">
-              <div className="absolute left-3 top-2.5 text-gray-400">
-                <User size={18} />
-              </div>
-              <Input
-                id="name"
-                name="name"
-                placeholder="Enter your full name"
-                className="form-input pl-10"
-                value={formData.name}
-                onChange={handleChange}
-                disabled={isLoading}
-              />
+          {errors.form && (
+            <div className="text-sm text-red-500 bg-red-50 p-3 rounded-md border border-red-200 flex items-center">
+              <X size={16} className="mr-2" /> {errors.form}
             </div>
-            {errors.name && (
-              <div className="text-sm text-red-500 flex items-center mt-1">
-                <X size={16} className="mr-1" /> {errors.name}
-              </div>
-            )}
-          </div>
+          )}
           
           <div className="space-y-2">
             <Label htmlFor="email" className="form-label">Email</Label>
@@ -199,7 +150,12 @@ const StudentSignUpForm: React.FC = () => {
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="password" className="form-label">Password</Label>
+            <div className="flex justify-between items-center">
+              <Label htmlFor="password" className="form-label">Password</Label>
+              <a href="/forgot-password" className="text-xs text-purple-600 hover:underline">
+                Forgot password?
+              </a>
+            </div>
             <div className="relative">
               <div className="absolute left-3 top-2.5 text-gray-400">
                 <Lock size={18} />
@@ -208,7 +164,7 @@ const StudentSignUpForm: React.FC = () => {
                 id="password"
                 name="password"
                 type="password"
-                placeholder="Create a password"
+                placeholder="Enter your password"
                 className="form-input pl-10"
                 value={formData.password}
                 onChange={handleChange}
@@ -222,44 +178,24 @@ const StudentSignUpForm: React.FC = () => {
             )}
           </div>
           
-          <div className="space-y-2">
-            <Label htmlFor="confirmPassword" className="form-label">Confirm Password</Label>
-            <div className="relative">
-              <div className="absolute left-3 top-2.5 text-gray-400">
-                <Lock size={18} />
-              </div>
-              <Input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                placeholder="Confirm your password"
-                className="form-input pl-10"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                disabled={isLoading}
-              />
-            </div>
-            {errors.confirmPassword && (
-              <div className="text-sm text-red-500 flex items-center mt-1">
-                <X size={16} className="mr-1" /> {errors.confirmPassword}
-              </div>
-            )}
-          </div>
-          
           <Button 
             type="submit" 
             className="btn-primary mt-6 w-full"
             disabled={isLoading}
           >
-            {isLoading ? "Creating Account..." : "Create Account"}
+            {isLoading ? "Signing In..." : "Sign In"}
           </Button>
         </form>
       </CardContent>
       <CardFooter className="flex justify-center border-t pt-4">
         <p className="text-sm text-gray-500">
-          Already have an account?{" "}
-          <a href="/login" className="text-purple-500 hover:underline font-medium">
-            Sign In
+          Don't have an account?{" "}
+          <a href="/signup" className="text-purple-500 hover:underline font-medium">
+            Sign Up
+          </a>
+          {" | "}
+          <a href="/college-signup" className="text-purple-500 hover:underline font-medium">
+            College Sign Up
           </a>
         </p>
       </CardFooter>
@@ -267,4 +203,4 @@ const StudentSignUpForm: React.FC = () => {
   );
 };
 
-export default StudentSignUpForm;
+export default LoginForm;
