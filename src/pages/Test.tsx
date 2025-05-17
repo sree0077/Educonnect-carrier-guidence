@@ -10,6 +10,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Progress } from "@/components/ui/progress";
 import { Clock, AlertTriangle, CheckCircle } from 'lucide-react';
 
+// Update the Question type to match what comes from Supabase
 type Question = {
   id: string;
   question_text: string;
@@ -126,7 +127,16 @@ const AptitudeTest = () => {
           return;
         }
         
-        setQuestions(questionsData);
+        // Fix the type mismatch by making sure options is correctly typed
+        const formattedQuestions: Question[] = questionsData.map(q => ({
+          id: q.id,
+          question_text: q.question_text,
+          category: q.category,
+          options: q.options as { [key: string]: string },
+          correct_answer: q.correct_answer
+        }));
+        
+        setQuestions(formattedQuestions);
         
       } catch (error: any) {
         console.error('Error fetching test data:', error);
