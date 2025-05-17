@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -6,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { useNavigate } from 'react-router-dom';
 import { LogOut, BookOpen, School, GraduationCap, Award, User } from 'lucide-react';
+import DashboardContent from '@/components/DashboardContent';
 
 const Dashboard: React.FC = () => {
   const { toast } = useToast();
@@ -122,16 +122,6 @@ const Dashboard: React.FC = () => {
               <p><span className="font-semibold">Name:</span> {userProfile?.full_name || 'Not provided'}</p>
               <p><span className="font-semibold">Email:</span> {userProfile?.email}</p>
               <p><span className="font-semibold">Account Type:</span> {userProfile?.user_type}</p>
-              {isStudent && (
-                <Button variant="outline" size="sm" className="mt-2">
-                  Complete Student Profile
-                </Button>
-              )}
-              {isCollege && (
-                <Button variant="outline" size="sm" className="mt-2">
-                  Update College Information
-                </Button>
-              )}
             </div>
           </CardContent>
         </Card>
@@ -148,7 +138,6 @@ const Dashboard: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <p className="mb-4">Take aptitude tests to find your ideal career path</p>
-                <Button size="sm">Take Test Now</Button>
               </CardContent>
             </Card>
             
@@ -161,8 +150,7 @@ const Dashboard: React.FC = () => {
                 <CardDescription>Track your applications</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="mb-4">No applications yet</p>
-                <Button size="sm">Browse Colleges</Button>
+                <p className="mb-4">Manage your applications to colleges</p>
               </CardContent>
             </Card>
           </>
@@ -180,7 +168,6 @@ const Dashboard: React.FC = () => {
               </CardHeader>
               <CardContent>
                 <p className="mb-4">Add or update courses to attract students</p>
-                <Button size="sm">Manage Courses</Button>
               </CardContent>
             </Card>
             
@@ -193,15 +180,16 @@ const Dashboard: React.FC = () => {
                 <CardDescription>Student applications</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="mb-4">No applications to review yet</p>
-                <Button size="sm">View Applications</Button>
+                <p className="mb-4">Review student applications to your college</p>
               </CardContent>
             </Card>
           </>
         )}
       </div>
       
-      <div className="bg-purple-50 border border-purple-100 rounded-lg p-6">
+      <DashboardContent userType={userProfile?.user_type} />
+      
+      <div className="bg-purple-50 border border-purple-100 rounded-lg p-6 mt-8">
         <h2 className="text-xl font-semibold text-purple-800 mb-4">Getting Started</h2>
         
         {isStudent && (

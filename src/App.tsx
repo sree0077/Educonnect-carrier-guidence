@@ -10,6 +10,9 @@ import StudentSignUp from "./pages/StudentSignUp";
 import CollegeSignUp from "./pages/CollegeSignUp";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import College from "./pages/College";
+import Test from "./pages/Test";
+import TestResults from "./pages/TestResults";
 import { useState, useEffect } from "react";
 import { supabase } from "./integrations/supabase/client";
 import { useNavigate, Navigate } from "react-router-dom";
@@ -96,6 +99,26 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/college/:id" 
+            element={<College />} 
+          />
+          <Route 
+            path="/test/:id" 
+            element={
+              <ProtectedRoute>
+                <Test />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/test/results/:id" 
+            element={
+              <ProtectedRoute>
+                <TestResults />
               </ProtectedRoute>
             } 
           />
