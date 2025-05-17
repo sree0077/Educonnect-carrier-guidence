@@ -1,0 +1,17 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="350" viewBox="0 0 500 350" fill="none">
+  <g clip-path="url(#clip0_3_2)">
+    <path d="M250 350C388.071 350 500 271.65 500 175C500 78.3502 388.071 0 250 0C111.929 0 0 78.3502 0 175C0 271.65 111.929 350 250 350Z" fill="#F3F4F6" fill-opacity="0.4"/>
+    <path d="M250 70L160 125V135H340V125L250 70Z" fill="#9B87F5" fill-opacity="0.2" stroke="#9B87F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="170" y="135" width="30" height="115" fill="white" stroke="#9B87F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="235" y="135" width="30" height="115" fill="white" stroke="#9B87F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="300" y="135" width="30" height="115" fill="white" stroke="#9B87F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M150 250H350V270C350 275.523 345.523 280 340 280H160C154.477 280 150 275.523 150 270V250Z" fill="#9B87F5" fill-opacity="0.2" stroke="#9B87F5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M235 195C238.866 195 242 191.866 242 188C242 184.134 238.866 181 235 181C231.134 181 228 184.134 228 188C228 191.866 231.134 195 235 195Z" fill="#9B87F5"/>
+  </g>
+  <defs>
+    <clipPath id="clip0_3_2">
+      <rect width="500" height="350" fill="white"/>
+    </clipPath>
+  </defs>
+</svg>

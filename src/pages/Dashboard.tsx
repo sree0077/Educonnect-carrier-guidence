@@ -6,7 +6,9 @@ import { Toaster } from "@/components/ui/toaster";
 const Dashboard: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <DashboardComponent />
+      <div className="animate-fade-in">
+        <DashboardComponent />
+      </div>
       <Toaster />
     </div>
   );
