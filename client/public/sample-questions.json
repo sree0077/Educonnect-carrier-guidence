@@ -1,0 +1,98 @@
+[
+  {
+    "text": "<p>A train traveling at 72 km/h crosses a 180 m long platform in 18 seconds. What is the length of the train?</p>",
+    "type": "mcq-single",
+    "difficultyLevel": "medium",
+    "categories": ["Calculus"],
+    "options": [
+      {
+        "id": "option-1",
+        "text": "100",
+        "isCorrect": false,
+        "explanation": ""
+      },
+      {
+        "id": "option-2",
+        "text": "180",
+        "isCorrect": false,
+        "explanation": ""
+      },
+      {
+        "id": "option-3",
+        "text": "160",
+        "isCorrect": false,
+        "explanation": ""
+      },
+      {
+        "id": "option-4",
+        "text": "120",
+        "isCorrect": true,
+        "explanation": "Speed = 72 km/h = 20 m/s. Time = 18 s. Distance covered = Speed × Time = 20 × 18 = 360 m. This includes both train length and platform length. So train length = 360 - 180 = 180 m."
+      }
+    ]
+  },
+  {
+    "text": "<p>If 'TABLE' is coded as 'VCDNG', then how will 'CHAIR' be coded?</p>",
+    "type": "mcq-single",
+    "difficultyLevel": "medium",
+    "categories": ["Reasoning"],
+    "options": [
+      {
+        "id": "option-1747635386045",
+        "text": "EJCKT",
+        "isCorrect": true,
+        "explanation": "Each letter is replaced with the letter that comes 2 positions after it in the alphabet."
+      },
+      {
+        "id": "option-1747635391111",
+        "text": "EGCLT",
+        "isCorrect": false,
+        "explanation": ""
+      },
+      {
+        "id": "option-1747635395546",
+        "text": "EGAKT",
+        "isCorrect": false,
+        "explanation": ""
+      },
+      {
+        "id": "option-1747635395826",
+        "text": "EJAKT",
+        "isCorrect": false,
+        "explanation": ""
+      }
+    ]
+  },
+  {
+    "text": "<p>What is the next number in the sequence: 2, 5, 10, 17, 26, ?</p>",
+    "type": "mcq-single",
+    "difficultyLevel": "easy",
+    "categories": ["Mathematics"],
+    "options": [
+      {
+        "id": "option-1747635386045",
+        "text": "37",
+        "isCorrect": true,
+        "explanation": "The pattern is +3, +5, +7, +9, +11. So the next number is 26 + 11 = 37."
+      },
+      {
+        "id": "option-1747635391111",
+        "text": "35",
+        "isCorrect": false,
+        "explanation": ""
+      },
+      {
+        "id": "option-1747635395546",
+        "text": "36",
+        "isCorrect": false,
+        "explanation": ""
+      },
+      {
+        "id": "option-1747635395826",
+        "text": "39",
+        "isCorrect": false,
+        "explanation": ""
+      }
+    ]
+  }
+]

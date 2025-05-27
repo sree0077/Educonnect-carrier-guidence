@@ -1,73 +1,121 @@
-# Welcome to your Lovable project
+# Education Journey Launchpad
 
-## Project info
+A comprehensive education platform with separate frontend and backend architecture.
 
-**URL**: https://lovable.dev/projects/b0681974-472e-43e3-98b5-adf34801aeae
+## Project Structure
 
-## How can I edit this code?
+```
+education-journey-launchpad/
+├── client/                  # React Frontend
+│   ├── src/
+│   │   ├── components/     # React components
+│   │   ├── pages/          # Page components
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── lib/            # Utilities and configurations
+│   │   ├── types/          # TypeScript type definitions
+│   │   └── utils/          # Helper functions
+│   ├── public/             # Static assets
+│   └── package.json        # Frontend dependencies
+│
+├── server/                  # Express Backend
+│   ├── src/
+│   │   ├── controllers/    # Route controllers
+│   │   ├── middleware/     # Express middleware
+│   │   ├── models/         # Data models
+│   │   ├── routes/         # API routes
+│   │   ├── services/       # Business logic
+│   │   └── utils/          # Backend utilities
+│   └── package.json        # Backend dependencies
+│
+├── shared/                  # Shared code
+│   ├── src/
+│   │   ├── types/          # Common type definitions
+│   │   └── utils/          # Shared utility functions
+│   └── package.json        # Shared dependencies
+│
+├── config/                  # Project-wide configuration
+│   └── firebase.config.ts  # Firebase configuration
+│
+└── package.json            # Root workspace configuration
+```
 
-There are several ways of editing your application.
+## Getting Started
 
-**Use Lovable**
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b0681974-472e-43e3-98b5-adf34801aeae) and start prompting.
+### Installation
 
-Changes made via Lovable will be committed automatically to this repo.
+1. Clone the repository
+2. Install dependencies for all packages:
+   ```bash
+   npm run install:all
+   ```
 
-**Use your preferred IDE**
+### Development
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Start both frontend and backend in development mode:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Or start them individually:
+```bash
+# Start frontend only
+npm run client:dev
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+# Start backend only
+npm run server:dev
+```
 
-**Use GitHub Codespaces**
+### Available Scripts
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- `npm run dev` - Start both client and server in development mode
+- `npm run build` - Build both client and server
+- `npm run lint` - Run linting for both client and server
+- `npm run install:all` - Install dependencies for all packages
 
-## What technologies are used for this project?
+## Technology Stack
 
-This project is built with:
+### Frontend
+- React 18 with TypeScript
+- Vite for build tooling
+- Tailwind CSS for styling
+- Radix UI components
+- React Router for navigation
+- React Query for state management
+- Firebase client SDK
 
-- Vite
+### Backend
+- Node.js with Express
 - TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Firebase Admin SDK
+- Security middleware (Helmet, CORS)
+- Request logging (Morgan)
 
-## How can I deploy this project?
+## 🐳 Docker Support
 
-Simply open [Lovable](https://lovable.dev/projects/b0681974-472e-43e3-98b5-adf34801aeae) and click on Share -> Publish.
+Simple Docker setup for easy development.
 
-## Can I connect a custom domain to my Lovable project?
+### Quick Start with Docker
 
-Yes, you can!
+```bash
+# Build and start all services
+docker-compose up --build
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# Run in background
+docker-compose up -d --build
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+# Stop services
+docker-compose down
+```
+
+### Access Points
+- **Frontend**: http://localhost:3000
+- **Backend API**: http://localhost:3001
+- **Health Check**: http://localhost:3001/api/health
+
+## Environment Variables
+
+Create a `.env` file in the server directory based on `.env.example`
