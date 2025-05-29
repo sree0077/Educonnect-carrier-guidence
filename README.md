@@ -1,4 +1,4 @@
-# 🎓 Education Journey Launchpad
+![Screenshot from 2025-05-27 11-03-22](https://github.com/user-attachments/assets/f35c5b0c-dcfe-4202-9514-031acd4eea06)# 🎓 Education Journey Launchpad
 
 <div align="center">
 
@@ -274,20 +274,41 @@ npm run install:all     # Install all dependencies
 
 ### 🏠 Landing Page
 *Modern and intuitive landing page with clear navigation*
+![Screenshot from 2025-05-27 11-02-06](https://github.com/user-attachments/assets/42762b41-5e2b-435a-baa0-6ca9801055e5)
+![Screenshot from 2025-05-27 11-03-22](https://github.com/user-attachments/assets/ac027056-aab9-494e-b8d9-d26eee6973f4)
+![Screenshot from 2025-05-27 11-03-38](https://github.com/user-attachments/assets/43ec5fe2-d3b6-4cc3-9aaf-69ae26a5d288)
 
 ### 👨‍🎓 Student Dashboard
 *Comprehensive dashboard showing applications, tests, and progress*
+![Screenshot from 2025-05-27 11-04-44](https://github.com/user-attachments/assets/068c1c65-672f-422f-92fc-b30ba2695d7e)
+![Screenshot from 2025-05-27 11-05-16](https://github.com/user-attachments/assets/814a3e01-11e8-400f-8e77-aee6f7c66598)
+![Screenshot from 2025-05-27 11-05-47](https://github.com/user-attachments/assets/8fd670ae-77db-4846-8f46-40540ac3bfd2)
+
+
 
 ### 🏛️ College Dashboard
 *Institution management interface with analytics and application tracking*
+![Screenshot from 2025-05-27 11-06-01](https://github.com/user-attachments/assets/f683e167-818d-43d4-af09-a191dc58044f)
+![Screenshot from 2025-05-27 11-11-41](https://github.com/user-attachments/assets/5e4e5ddf-93f1-466a-b03d-8a19929d3b63)
+![Screenshot from 2025-05-27 11-12-07](https://github.com/user-attachments/assets/859adfd7-7190-4184-9cc2-9083e8e23a08)
+
+
 
 ### 📊 Aptitude Test Interface
 *Clean and focused test-taking experience*
 
+![Screenshot from 2025-05-27 11-12-21](https://github.com/user-attachments/assets/69ef6efd-72e6-4a75-8d60-71e04000e89f)
+![Screenshot from 2025-05-27 11-12-37](https://github.com/user-attachments/assets/7017dcab-6181-4b24-be6f-90bb261e8f48)
+![Screenshot from 2025-05-27 11-12-51](https://github.com/user-attachments/assets/cc3dbccd-fa0a-4c6b-8789-76de61fbcac5)
+![Screenshot from 2025-05-27 11-53-01](https://github.com/user-attachments/assets/7f08570c-cf27-4914-8f09-8827209497b8)
+
+
 ### 📈 Results & Analytics
 *Detailed results with visual analytics and insights*
 
-> **Note**: Screenshots will be added soon. The application features a modern, responsive design built with Tailwind CSS and Radix UI components.
+![Screenshot from 2025-05-27 11-05-29](https://github.com/user-attachments/assets/c9a3cfe0-0845-4777-a56d-72c8a46491bd)
+
+
 
 ---
 
